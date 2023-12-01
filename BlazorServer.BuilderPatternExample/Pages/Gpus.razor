@@ -1,0 +1,17 @@
+﻿@page "/gpus";
+@using BlazorServer.BuilderPatternExample.Domain.Models;
+
+<MudDataGrid @attributes='Splats.DataGrid("Gpus")' T="Gpu" Items="@GpuList" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@QuickFilter" Hideable="true">
+    <ToolBarContent>
+        <MudText @attributes='Splats.PageHeader("Gpus")'>Gpus</MudText>
+        <MudSpacer />
+        <MudTextField @attributes='Splats.SearchField()' @bind-Value="SearchString" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Description" Title="Description" Sortable="true" Filterable="false" InitialDirection="SortDirection.Ascending" />
+        <PropertyColumn Property="x => x.Cost" Title="Cost" />
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="Gpu" />
+    </PagerContent>
+</MudDataGrid>

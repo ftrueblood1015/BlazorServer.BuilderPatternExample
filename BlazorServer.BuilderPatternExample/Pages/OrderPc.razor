@@ -1,0 +1,37 @@
+﻿@page "/orderpc"
+@using BlazorServer.BuilderPatternExample.Domain.Models
+
+<MudText @attributes='Splats.PageHeader("OrderPc")'>Order New Pc</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="7">
+        <MudPaper Class="pa-4">
+            <MudForm @ref="Form" @bind-IsValid="@success" @bind-Errors="@errors">
+                <MudSelect @attributes="Splats.SelectRequired(nameof(PcLevel))" T="int?" Label="Pc Level" ValueChanged="value => PcLevelValueChange(value)">
+                    @if (PcLevelList != null)
+                    {
+                        @foreach (var level in PcLevelList)
+                        {
+                            <MudSelectItem T="int?" Value="@level.Id">@level.Name</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+                <MudTextField @attributes='Splats.TextRequired("CustomerName")' T="string" @bind-Value="NewPc!.CustomerName" />
+            </MudForm>
+        </MudPaper>
+        <MudPaper Class="pa-4 mt-4">
+            <MudButton @attributes="Splats.NewButton()" OnClick="Save">Save</MudButton>
+            <MudButton @attributes="Splats.ResetButton()" OnClick="@(()=>Form!.ResetAsync())" Class="mx-2">Reset</MudButton>
+            <MudButton @attributes="Splats.CancelButton()" OnClick="CancelClick">Cancel</MudButton>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="5">
+        <MudPaper Class="pa-4 mud-height-full">
+            <MudText Typo="Typo.subtitle2">@($"Errors ({errors.Length})")</MudText>
+            @foreach (var error in errors)
+            {
+                <MudText Color="@Color.Error">@error</MudText>
+            }
+        </MudPaper>
+    </MudItem>
+</MudGrid>

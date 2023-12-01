@@ -1,0 +1,19 @@
+﻿@page "/rams";
+@using BlazorServer.BuilderPatternExample.Domain.Models;
+
+<MudDataGrid @attributes='Splats.DataGrid("Ram")' T="Ram" Items="@RamList" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@QuickFilter" Hideable="true">
+    <ToolBarContent>
+        <MudText @attributes='Splats.PageHeader("Ram")'>Ram</MudText>
+        <MudSpacer />
+        <MudTextField @attributes='Splats.SearchField()' @bind-Value="SearchString" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Description" Title="Description" Sortable="true" Filterable="false" />
+        <PropertyColumn Property="x => x.Cost" Title="Cost" InitialDirection="SortDirection.Ascending" />
+        <PropertyColumn Property="x => x.Type" Title="Type" />
+        <PropertyColumn Property="x => x.RamAmount" Title="Size" />
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="Ram" />
+    </PagerContent>
+</MudDataGrid>

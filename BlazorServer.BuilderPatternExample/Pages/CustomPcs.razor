@@ -1,0 +1,23 @@
+﻿@page "/custompcs";
+@using BlazorServer.BuilderPatternExample.Domain.Models;
+@using System.Globalization
+
+<MudDataGrid @attributes='Splats.DataGrid("custompcs")' T="CustomPc" Items="@CustomPcList" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@QuickFilter" Hideable="true">
+    <ToolBarContent>
+        <MudText @attributes='Splats.PageHeader("orders")'>Orders</MudText>
+        <MudSpacer />
+        <MudTextField @attributes='Splats.SearchField()' @bind-Value="SearchString" Class="mt-0 mr-2"></MudTextField>
+        <MudButton @attributes="Splats.NewButton()" class="ml-2" OnClick="CreateNewPc">Create Order</MudButton>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.CustomerName" Title="Customer" Sortable="true" Filterable="false" InitialDirection="SortDirection.Ascending" />
+        <PropertyColumn Property="x => x.TotalCost" Title="Cost" Sortable="true" Filterable="false" />
+        <PropertyColumn Property="x => x.Cpu!.Name" Title="Cpu" Sortable="true" Filterable="false" />
+        <PropertyColumn Property="x => x.Gpu!.Name" Title="Gpu" Sortable="true" Filterable="false" />
+        <PropertyColumn Property="x => x.Ram!.Name" Title="Ram" Sortable="true" Filterable="false" />
+        <PropertyColumn Property="x => x.HardDrive!.Name" Title="HardDrive" Sortable="true" Filterable="false" />
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="CustomPc" />
+    </PagerContent>
+</MudDataGrid>
