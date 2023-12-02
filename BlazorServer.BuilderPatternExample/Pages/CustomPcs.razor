@@ -1,6 +1,5 @@
 ﻿@page "/custompcs";
 @using BlazorServer.BuilderPatternExample.Domain.Models;
-@using System.Globalization
 
 <MudDataGrid @attributes='Splats.DataGrid("custompcs")' T="CustomPc" Items="@CustomPcList" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@QuickFilter" Hideable="true">
     <ToolBarContent>

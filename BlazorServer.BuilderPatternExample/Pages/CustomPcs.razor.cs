@@ -21,7 +21,7 @@ namespace BlazorServer.BuilderPatternExample.Pages
                 throw new ArgumentException(nameof(PcLevelService));
             }
 
-            var Response = await CustomPcService.GetAllAsync();
+            var Response = CustomPcService.GetAll();
             CustomPcList = Response != null ? Response.ToList() : new List<CustomPc>();
         }
 
@@ -33,7 +33,7 @@ namespace BlazorServer.BuilderPatternExample.Pages
             if (x.CustomerName!.Contains(SearchString, StringComparison.OrdinalIgnoreCase))
                 return true;
 
-            if ($"{x.TotalCost}".Contains(SearchString))
+            if ($"{x.TotalCost}".Contains(SearchString, StringComparison.OrdinalIgnoreCase))
                 return true;
 
             return false;
