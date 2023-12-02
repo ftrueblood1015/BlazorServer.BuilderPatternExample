@@ -25,8 +25,6 @@ namespace BlazorServer.BuilderPatternExample.UnitTests.Services
         private readonly PcLevel Mid;
         private readonly PcLevel Top;
 
-        private readonly CustomPc TopPc;
-
         public CustomPcTests()
         {
             var CustomPcRepo = MockRepos.MockRepo<ICustomPcRepository, CustomPc>(new List<CustomPc>()
@@ -71,8 +69,6 @@ namespace BlazorServer.BuilderPatternExample.UnitTests.Services
             Base = new PcLevel { Id = 1, Description = "Base Model", Name = "Base Model", Slug = "BASE" };
             Mid = new PcLevel { Id = 2, Description = "Mid Model", Name = "Mid Model", Slug = "MID" };
             Top = new PcLevel { Id = 3, Description = "Top Model", Name = "Top Model", Slug = "TOP" };
-
-            TopPc = new CustomPc { CustomerName = "TopPc", PcLevelId = 3, PcLevel = Top };
 
             CpuService = new CpuService(CpuRepo.Object);
             GpuService = new GpuService(GpuRepo.Object);
